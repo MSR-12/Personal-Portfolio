@@ -1,0 +1,129 @@
+
+.contact-section {
+  background: radial-gradient(circle at 10% 20%, #0f2027, #203a43, #2c5364);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 60px 0;
+  color: #fff;
+}
+
+
+.contact-title {
+  color: #00eaff;
+  font-size: 2.4rem;
+  text-shadow: 0 0 10px rgba(0, 234, 255, 0.6);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(8px);
+  padding: 30px;
+  border-radius: 18px;
+  width: 100%;
+  box-shadow: 0 6px 25px rgba(0, 234, 255, 0.08);
+}
+
+.transparent-input {
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 2px solid rgba(255,255,255,0.25) !important;
+  color: #fff !important;
+  padding: 12px 6px;
+  outline: none !important;
+}
+
+.transparent-input::placeholder {
+  color: transparent !important;
+}
+
+.transparent-input:-webkit-autofill {
+  -webkit-text-fill-color: #fff !important;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+.transparent-input:focus {
+  border-bottom-color: #00eaff !important;
+}
+
+.floating-label {
+  position: relative;
+  margin-bottom: 26px;
+}
+
+.floating-label label {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  color: rgba(255,255,255,0.6);
+  pointer-events: none;
+  transition: 0.2s ease;
+}
+
+.transparent-input:focus + label,
+.transparent-input:not(:placeholder-shown) + label {
+  top: -14px;
+  font-size: 0.85rem;
+  color: #00eaff;
+}
+
+.info-box {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding-left: 40px;
+}
+
+.divider-vertical {
+  display: none !important;
+}
+
+.info-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+}
+
+.icon-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  text-decoration: none;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.06);
+  color: #fff;
+  transition: 0.25s ease;
+}
+
+.icon-card:hover {
+  background: rgba(0,234,255,0.15);
+  transform: translateY(-4px);
+}
+
+.icon-wrap {
+  width: 50px;
+  height: 50px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #00eaff;
+}
+
+.info-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-text strong {
+  font-size: 1rem;
+}
+
+.info-text span {
+  opacity: 0.8;
+  font-size: 0.85rem;
+}
