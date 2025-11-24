@@ -48,14 +48,14 @@ function Projects() {
       img: ecommerce,
       desc: "Full-stack platform with cart & payments.",
       skills: "React, Node, MongoDB, Bootstrap",
-      link: "#",
+      link: "https://github.com/MSR-12/Amazon-clone",
     },
     {
       title: "Dashboard",
       img: dashboard,
       desc: "Smart analytics for business decisions",
       skills: "React, Express, JWT",
-      link: "#",
+      link: "https://github.com/MSR-12/Dashboard",
     },
     {
       title: "Music App",

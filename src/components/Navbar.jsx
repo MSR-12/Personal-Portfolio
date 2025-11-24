@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Navbar.css";
 
@@ -6,14 +6,37 @@ function Navigation() {
   const location = useLocation();
   const [theme, setTheme] = useState("dark");
   const [menuOpen, setMenuOpen] = useState(false);
+  const navRef = useRef(null);
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-      setTheme(savedTheme);
-      document.body.className = savedTheme;
+    const saved = localStorage.getItem("theme");
+    if (saved) {
+      setTheme(saved);
+      document.body.className = saved;
     }
   }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        navRef.current.classList.add("scrolled");
+      } else {
+        navRef.current.classList.remove("scrolled");
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleClick = (e) => {
+      if (menuOpen && navRef.current && !navRef.current.contains(e.target)) {
+        setMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, [menuOpen]);
 
   const toggleTheme = () => {
     const newTheme = theme === "dark" ? "light" : "dark";
@@ -25,11 +48,9 @@ function Navigation() {
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
   return (
-    <nav className={`navbar ${theme}`}>
+    <nav ref={navRef} className={`navbar ${theme}`}>
       <div className="navbar-container">
-        <div className="logo" data-text="MyPortfolio">
-          🌐 MyPortfolio
-        </div>
+        <div className="logo">🌐 MyPortfolio</div>
 
         <div className={`nav-links ${menuOpen ? "open" : ""}`}>
           <ul className="nav-list">
@@ -49,16 +70,11 @@ function Navigation() {
         </div>
 
         <div className="nav-actions">
-          <button className="theme-btn" onClick={toggleTheme}>
-            <span className="theme-icon">
-              {theme === "light" ? "🌙" : "☀️"}
-            </span>
+          <button className="theme-btn desktop-theme" onClick={toggleTheme}>
+            {theme === "light" ? "🌙" : "☀️"}
           </button>
 
-          <div
-            className={`menu-toggle ${menuOpen ? "active" : ""}`}
-            onClick={toggleMenu}
-          >
+          <div className={`menu-toggle ${menuOpen ? "active" : ""}`} onClick={toggleMenu}>
             <span></span><span></span><span></span>
           </div>
         </div>
